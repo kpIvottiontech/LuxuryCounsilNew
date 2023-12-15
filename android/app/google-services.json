@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "768098817638",
+    "project_id": "luxury-council",
+    "storage_bucket": "luxury-council.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768098817638:android:ae44fb81299608b6197fa7",
+        "android_client_info": {
+          "package_name": "com.luxury_council.luxury_council"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768098817638-6qcaareqqhm6j82cme7mm43u0u2u6r3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luxury_council.luxury_council",
+            "certificate_hash": "f976835787586f6ce72a1e7adfcf04668bb93293"
+          }
+        },
+        {
+          "client_id": "768098817638-sjd9gtno6e5v1qa05vkb892s65uise2u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKal5iz_jP9V43xIBmCWbXc_Z2I8GqXXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768098817638-sjd9gtno6e5v1qa05vkb892s65uise2u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
