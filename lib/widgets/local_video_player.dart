@@ -6,6 +6,8 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
+import '../config/colors.dart';
+
 class LocalVideoPlayer extends StatefulWidget {
   final String? url;
   const LocalVideoPlayer({this.url,super.key});
@@ -110,6 +112,13 @@ class _LocalVideoPlayerState extends State<LocalVideoPlayer> {
       aspectRatio: 16 / 9,
       child: flickManager != null
           ?  FlickVideoPlayer(
+        flickVideoWithControls: FlickVideoWithControls(
+          videoFit: BoxFit.fitHeight,
+          controls: FlickPortraitControls(
+            progressBarSettings:
+            FlickProgressBarSettings(playedColor: AppColor.primarycolor),
+          ),
+        ),
         flickManager: flickManager,
       )
           : Center(child: CircularProgressIndicator()),

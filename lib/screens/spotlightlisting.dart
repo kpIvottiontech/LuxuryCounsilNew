@@ -31,6 +31,7 @@ int subscriptionid = GlobalData().subscriptionId;
   }
   @override
   Widget build(BuildContext context) {
+    //print('check>> ${spotlightListingController.spotlightListing[4].spotlightMemberCompanyLogoLink}');
     return Scaffold(
       backgroundColor: AppColor.grey,
       appBar: AppBarDetails(appBar: AppBar(), text: 'SPOTLIGHT MEMBERS', isNotSubscription: subscriptionid==0||subscriptionid==1||subscriptionid==2||subscriptionid==6,screenName: '/SpotlightListing'),
@@ -103,104 +104,110 @@ int subscriptionid = GlobalData().subscriptionId;
       Obx(()=>
       spotlightListingController.spotlightListing.isNotEmpty ?
           Column(children: [
-            ListView.separated(
-              padding: EdgeInsets.only(left: 15, right: 15, top: 25),
-              controller: scrollController,
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              primary: false,
-              itemCount: spotlightListingController.spotlightListing.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: (){
-                    Get.toNamed("/SpotlightMember", arguments: [
-                      spotlightListingController.spotlightListing[index].spotlightMemberId
-                    ]);
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: index % 2 == 0
-                            ? AppColor.black
-                            : AppColor.lightgrey
-                    ),
+            Expanded(
+              child: ListView.separated(
+                padding: EdgeInsets.only(left: 15, right: 15, top: 25),
+                controller: scrollController,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                primary: false,
+                itemCount: spotlightListingController.spotlightListing.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: (){
+                      Get.toNamed("/SpotlightMember", arguments: [
+                        spotlightListingController.spotlightListing[index].spotlightMemberId
+                      ]);
+                    },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CachedNetworkImage(
-                            imageUrl:spotlightListingController.spotlightListing[index].spotlightMemberCompanyLogoLink?? '',
-                            placeholder: (context, url) =>
-                            const AppLoader(type: LoaderType.activityIndicator),
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
-                            fit: BoxFit.fill,
-                            width: AspectSize.getWidthSize(
-                                context: context, sizeConstant: 115),
-                            height: AspectSize.getWidthSize(
-                                context: context, sizeConstant: 110),
+                      decoration: BoxDecoration(
+                          color: index % 2 == 0
+                              ? AppColor.black
+                              : AppColor.lightgrey
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CachedNetworkImage(
+                              imageUrl:spotlightListingController.spotlightListing[index].spotlightMemberCompanyLogoLink?? '',
+                              placeholder: (context, url) =>
+                              const AppLoader(type: LoaderType.activityIndicator),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                              fit: BoxFit.fill,
+                              width: AspectSize.getWidthSize(
+                                  context: context, sizeConstant: 115),
+                              height: AspectSize.getWidthSize(
+                                  context: context, sizeConstant: 110),
 
-                          ),
-                          SizedBox(width: 15,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                child: Text(
-                                  spotlightListingController.spotlightListing[index].spotlightMemberContactName ?? '',
-                                  style: TextStyle(
-                                      color: AppColor.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 5),
-                                width: 200,
-                                child: Text(
-                                  spotlightListingController.spotlightListing[index].spotlightMemberCompanyShortDescription?? '',
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      color:
-                                      AppColor.white,
-                                      fontSize: 12),
-                                ),
-                              ),
-                              Container(
-                                height: 25,
-                                width: 90,
-                                margin: EdgeInsets.only(top: 10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: AppColor.primarycolor,
-                                ),
-                                child: Center(
-                                  child: GestureDetector(
-                                    child: Text(
-                                      'Learn more',
-                                      style: TextStyle(
-                                          color: AppColor.black,
-                                          fontSize: 12),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        spotlightListingController.spotlightListing[index].spotlightMemberContactName ?? '',
+                                        style: TextStyle(
+                                            color: AppColor.white,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 14),
+                                      ),
                                     ),
-                                  ),
+                                    Container(
+                                      margin: EdgeInsets.only(top: 5),
+                                      width: 200,
+                                      child: Text(
+                                        spotlightListingController.spotlightListing[index].spotlightMemberCompanyShortDescription?? '',
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color:
+                                            AppColor.white,
+                                            fontSize: 12),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 25,
+                                      width: 90,
+                                      margin: EdgeInsets.only(top: 10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: AppColor.primarycolor,
+                                      ),
+                                      child: Center(
+                                        child: GestureDetector(
+                                          child: Text(
+                                            'Learn more',
+                                            style: TextStyle(
+                                                color: AppColor.black,
+                                                fontSize: 12),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
-                              )
-                            ],
-                          )
-                        ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: 10,
-                );
-              },
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    height: 10,
+                  );
+                },
+              ),
             ),
             Visibility(
               visible: spotlightListingController.isLoading.value && page != 1,

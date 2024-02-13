@@ -43,12 +43,10 @@ class GroupSubscriptionController extends GetxController {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(subscriptionResponse['message'])));
       } else {
-
         context.loaderOverlay.hide();
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(YourRequestHasBeenSentToAdminSuccessfully)));
         Get.toNamed("/HomeWithSignUp");
-
         emailController.clear();
         nameController.clear();
         phoneNumberController.clear();

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:luxury_council/colors.dart';
@@ -40,7 +39,8 @@ class _SpotlightMemberState extends State<SpotlightMember> {
   checkFirst() async {
     await spotlightDetailsController.getSpotlightDetails(
         context, widget.memberId);
-    print('spotlight>> ${spotlightDetailsController.spotlightData.value!.spotlightMemberContactName}');
+    print(
+        'spotlight>> ${spotlightDetailsController.spotlightData.value!.spotlightMemberContactName}');
     spotlightDetailsController.updateScreen('spotlight');
     await getData();
   }
@@ -59,7 +59,9 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                 print('text is here>> ${nameCtr.text.toString()}');
                 spotlight.sendSpotlightMail(
                     context,
-                    spotlight.spotlightData.value?.spotlightMemberContactEmail ?? '',
+                    spotlight
+                            .spotlightData.value?.spotlightMemberContactEmail ??
+                        '',
                     convertTextToHtml());
               },
               child: Container(
@@ -94,8 +96,7 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                     subscriptionid == 6,
                 screenName: '/SpotlightMember',
                 plan1: widget.memberId.toString()),
-            body: Obx(() => spotlight
-                        .spotlightData.value?.spotlightMemberId !=
+            body: Obx(() => spotlight.spotlightData.value?.spotlightMemberId !=
                     null
                 ? SingleChildScrollView(
                     child: Column(
@@ -130,8 +131,10 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                                                 BorderRadius.circular(10),
                                             color: AppColor.black),
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
@@ -141,12 +144,11 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                                                     CrossAxisAlignment.center,
                                                 children: [
                                                   CachedNetworkImage(
-                                                    imageUrl:
-                                                    spotlight
-                                                                .spotlightData
-                                                                .value
-                                                                ?.spotlightMemberCompanyLogoLink ??
-                                                            '',
+                                                    imageUrl: spotlight
+                                                            .spotlightData
+                                                            .value
+                                                            ?.spotlightMemberCompanyLogoLink ??
+                                                        '',
                                                     placeholder: (context,
                                                             url) =>
                                                         const AppLoader(
@@ -176,20 +178,23 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                                                   SizedBox(
                                                     width: 15,
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(top: 2),
-                                                    child: Text(
-                                                      spotlight
-                                                              .spotlightData
-                                                              .value
-                                                              ?.spotlightMemberContactName ??
-                                                          '',
-                                                      style: TextStyle(
-                                                          color: AppColor.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 15),
+                                                  Flexible(
+                                                    child: Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: 2),
+                                                      child: Text(
+                                                        spotlight
+                                                                .spotlightData
+                                                                .value
+                                                                ?.spotlightMemberContactName ??
+                                                            '',
+                                                        style: TextStyle(
+                                                            color:
+                                                                AppColor.white,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 15),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -199,9 +204,7 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                                               padding: EdgeInsets.only(
                                                   top: 16, bottom: 10),
                                               child: Text(
-                                                spotlight
-                                                        .spotlightData
-                                                        .value
+                                                spotlight.spotlightData.value
                                                         ?.spotlightMemberCompanyShortDescription ??
                                                     '',
                                                 style: TextStyle(
@@ -235,15 +238,42 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                                       SizedBox(
                                         height: 10,
                                       ),
-                                      Html(
+                                      /*Html(
+                                       // textStyle: TextStyle(color: AppColor.white),
                                           style: {
                                             '#': Style(
                                               color: AppColor.white,
                                               backgroundColor: AppColor.black,
                                             ),
+                                            "img": Style(
+                                                width: Width(MediaQuery.of(context).size.width/1.15,),
+                                                height: Height(MediaQuery.of(context).size.height / 4.5,)
+                                            ),
                                             'h1': Style(
                                               color: AppColor.white,
                                             ),
+                                            'h2': Style(
+                                              color: AppColor.white,
+                                            ),
+                                            "table": Style(
+                                              color: Colors.white,
+                                              height: Height(100),
+
+                                            ),
+                                            "tbody": Style(
+                                              color: Colors.white,
+                                              height: Height(100),
+
+                                            ),
+                                            "tr": Style(
+                                                padding: HtmlPaddings.all(2),
+                                                border: Border.all(color: Colors.white,)),
+                                            "th": Style(
+                                                padding: HtmlPaddings.all(2),
+                                                border: Border.all(color: Colors.white,)),
+                                            "td": Style(
+                                                padding: HtmlPaddings.all(2),
+                                                border: Border.all(color: Colors.white,)),
                                             'body': Style(
                                                 // backgroundColor: AppColor.black,
                                                 color: AppColor.white,
@@ -252,21 +282,25 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                                                 color: AppColor.white,
                                                 fontSize: FontSize.medium),
                                           },
-                                          data:
-                                              '${spotlightDetailsController.spotlightData.value?.spotlightMemberCompanyLongDescription}'),
-                                      /* Text(
-                            spotlightDetailsController.spotlightData.value?.spotlightMemberCompanyLongDescription??'',
-                            style:
-                            TextStyle(color: AppColor.white, fontSize: 14),
-                          ),*/
-                                      /* SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            'Sed a nibh eros. Morbi mattis felis erat. Vestibulum rutrum nulla at lacus dignissim, nec aliquet augue aliquet. Praesent eu tempus odio. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut pharetra ullamcorper augue non scelerisque. Vestibulum sollicitudin velit ac ex tempus commodo. Etiam placerat elementum lobortis. Integer vel quam velit. Etiam a nunc rhoncus, ullamcorper arcu sed, convallis sem. Integer malesuada lorem ligula, vitae laoreet diam tincidunt ut. Mauris elementum consectetur diam, at viverra urna placerat pulvinar.',
-                            style:
-                            TextStyle(color: AppColor.white, fontSize: 12),
-                          ),*/
+              */ /*                            shrinkWrap: true,
+                                          */ /**/ /* onLinkTap: (url, context, attributes, element) {
+                                            print(url.t);
+                                          }*/ /**/ /*
+                                          */ /*
+                                          extensions: [
+                                            // Add this to your extensions
+                                            TableHtmlExtension(),
+                                          ],
+                                            data:  '${spotlightDetailsController.spotlightData.value?.spotlightMemberCompanyLongDescription}'),*/
+                                      HtmlWidget(
+                                          textStyle: TextStyle(
+                                            color: AppColor.white,
+                                            fontSize: 13
+                                          ),
+                                      spotlightDetailsController.spotlightData.value?.spotlightMemberCompanyLongDescription?.replaceAll(
+                                            RegExp(r'color:\s*rgb\(0,\s*0,\s*0\);'),
+                                            'color: rgb(255, 255, 255);'
+                                        ) ?? ''),
                                       SizedBox(
                                         height: 10,
                                       ),
@@ -284,9 +318,7 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                                             width: 10,
                                           ),
                                           Text(
-                                            spotlight
-                                                    .spotlightData
-                                                    .value
+                                            spotlight.spotlightData.value
                                                     ?.spotlightMemberContactEmail ??
                                                 '',
                                             style: TextStyle(
@@ -299,9 +331,7 @@ class _SpotlightMemberState extends State<SpotlightMember> {
                                         height: 10,
                                       ),
                                       Text(
-                                        spotlight
-                                                .spotlightData
-                                                .value
+                                        spotlight.spotlightData.value
                                                 ?.spotlightMemberContactName ??
                                             '',
                                         style: TextStyle(
@@ -450,8 +480,8 @@ class _SpotlightMemberState extends State<SpotlightMember> {
 
   Future<void> getData() async {
     userName = await GetData("first_name") ?? "";
-    messageText =setController();
-       /* '''Dear ${spotlightDetailsController.name},
+    messageText = setController();
+    /* '''Dear ${spotlightDetailsController.name},
     I found your profile on the Luxury Council app and wanted to inquire about services. I look forward to connecting soon.
     Best
     $userName''';*/
@@ -462,7 +492,9 @@ class _SpotlightMemberState extends State<SpotlightMember> {
     print('nameCtr>> ${nameCtr.text}');
     final lines = nameCtr.text.split('\n'); // Split text into lines
     //final htmlLines = lines.map((line) => '<p style="color: black">${line.trim()}</p><br>').join();
-    final htmlLines = lines.map((line) => '<p style="color: black">${line.trim()}</p><p>').join();
+    final htmlLines = lines
+        .map((line) => '<p style="color: black">${line.trim()}</p><p>')
+        .join();
 
     final htmlContent = '''
     <html>
@@ -488,22 +520,22 @@ class _SpotlightMemberState extends State<SpotlightMember> {
   }*/
 
   setController() {
-    final String contactName = spotlightDetailsController.spotlightData.value?.spotlightMemberContactName ?? '';
+    final String contactName = spotlightDetailsController
+            .spotlightData.value?.spotlightMemberContactName ??
+        '';
     final String message = '''no space Dear $contactName,
 no spaceI found your profile on the Luxury Council app and wanted to inquire about services. I look forward to connecting soon.
 no spaceBest
 no space$userName''';
 
     // Replace the 'no space' and 'space' markers with actual spaces and newlines respectively
-    final formattedMessage = message
-        .replaceAll('no space','')
-        .replaceAll('space',' '); // Replace 'space' with newline character for new line
+    final formattedMessage = message.replaceAll('no space', '').replaceAll(
+        'space', ' '); // Replace 'space' with newline character for new line
 
-    nameCtr.text = formattedMessage.trim(); // Trim removes leading/trailing spaces
+    nameCtr.text =
+        formattedMessage.trim(); // Trim removes leading/trailing spaces
 
     print('nameCtr >> ${nameCtr.text}');
     return nameCtr;
   }
-
-
 }

@@ -4,7 +4,9 @@ import 'package:luxury_council/screens/spotlightlisting.dart';
 class Urls {
 
   // static const BASE_URL = 'https://ositch.com/luxury-test/luxury-app/public/api';
+  // static const BASE_URL = 'https://ositch.com/luxury_app/public/api';
    static const BASE_URL = 'https://shopsecured.com/luxury_app/public/api';
+   //static const BASE_URL = 'https://shopsecured.com/luxury_app/public/';
 
   static const LOGIN = BASE_URL + '/login';
   static const REGISTER = BASE_URL + '/register';
